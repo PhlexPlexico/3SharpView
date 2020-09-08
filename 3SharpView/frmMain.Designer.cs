@@ -31,9 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.lblIP = new System.Windows.Forms.Label();
             this.mnuTop = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txt3dsIp = new System.Windows.Forms.TextBox();
             this.btn3DsConn = new System.Windows.Forms.Button();
             this.pb3DS = new System.Windows.Forms.PictureBox();
+            this.mnuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb3DS)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,11 +53,42 @@
             // 
             // mnuTop
             // 
+            this.mnuTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.mnuTop.Location = new System.Drawing.Point(0, 0);
             this.mnuTop.Name = "mnuTop";
             this.mnuTop.Size = new System.Drawing.Size(755, 24);
             this.mnuTop.TabIndex = 1;
-            this.mnuTop.Text = "menuStrip1";
+            this.mnuTop.Text = "mnuTop";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Text = "E&xit";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutToolStripMenuItem.Text = "&About...";
             // 
             // txt3dsIp
             // 
@@ -60,6 +96,7 @@
             this.txt3dsIp.Name = "txt3dsIp";
             this.txt3dsIp.Size = new System.Drawing.Size(100, 23);
             this.txt3dsIp.TabIndex = 2;
+            this.txt3dsIp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt3dsIp_KeyDown);
             // 
             // btn3DsConn
             // 
@@ -94,6 +131,8 @@
             this.Name = "frmMain";
             this.Text = "3SharpView";
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.mnuTop.ResumeLayout(false);
+            this.mnuTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb3DS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -107,6 +146,10 @@
         private System.Windows.Forms.TextBox txt3dsIp;
         private System.Windows.Forms.Button btn3DsConn;
         private System.Windows.Forms.PictureBox pb3DS;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

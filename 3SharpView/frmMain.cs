@@ -25,7 +25,24 @@ namespace _3SharpView
 
         private void btn3DsConn_Click(object sender, EventArgs e)
         {
-            if(btn3DsConn.Text == "Connect!")
+            connectTo3DS();
+        }
+
+        private void txt3dsIp_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //enter key is down
+                connectTo3DS();
+            }
+        }
+
+        /**
+         * Uses the IP:Port in the text file to connect to the socket.
+         */
+        private void connectTo3DS()
+        {
+            if (btn3DsConn.Text == "Connect!")
             {
                 int colonIndex = txt3dsIp.Text.IndexOf(':');
                 String ipStr;
@@ -60,20 +77,24 @@ namespace _3SharpView
                     }
                     while (sockConn.Connected)
                     {
-                        try {
+                        try
+                        {
                             int bytesRecvd = sockConn.Receive(incBuff);
                             string jsonValues = Encoding.UTF8.GetString(incBuff.Take(bytesRecvd).ToArray());
                             // Remove last semi-colon.
                             jsonValues = jsonValues.Remove(jsonValues.Length - 1);
+                            jsonValues =jsonValues.Insert(jsonValues.Length, "]");
+                            jsonValues =jsonValues.Insert(0, "[");
                             incBuff = new byte[65535];
-                        } catch
+                        }
+                        catch
                         {
                             btn3DsConn.BeginInvoke(new MethodInvoker(() =>
                             {
                                 btn3DsConn.Text = "Connect!";
                             }));
                         }
-                        
+
                     }
 
 
@@ -83,8 +104,8 @@ namespace _3SharpView
             {
                 sockConn.Close();
             }
-            
         }
+
     }
     public class inputs
     {
