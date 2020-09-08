@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace _3SharpView
 {
@@ -10,6 +12,7 @@ namespace _3SharpView
     
     public partial class frmMain : Form
     {
+        Socket sockConn;
         public frmMain()
         {
             InitializeComponent();
@@ -22,52 +25,65 @@ namespace _3SharpView
 
         private void btn3DsConn_Click(object sender, EventArgs e)
         {
-            int colonIndex = txt3dsIp.Text.IndexOf(':');
-            String ipStr;
-            String port;
-            if (colonIndex == -1)
+            if(btn3DsConn.Text == "Connect!")
             {
-                MessageBox.Show("Invalid host:port format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                int colonIndex = txt3dsIp.Text.IndexOf(':');
+                String ipStr;
+                String port;
+                String jsonValues;
+                if (colonIndex == -1)
+                {
+                    MessageBox.Show("Invalid host:port format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    ipStr = txt3dsIp.Text.Substring(0, colonIndex);
+                    port = txt3dsIp.Text.Substring(colonIndex + 1);
+                }
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    Thread.CurrentThread.Name = "SockInput";
+                    sockConn = new Socket(AddressFamily.InterNetwork,
+                     SocketType.Stream,
+                     ProtocolType.Tcp);
+                    sockConn.Connect(ipStr, Int32.Parse(port));
+                    byte[] incBuff = new byte[65535];
+                    //Loop and constantly receive messages.
+                    if (sockConn.Connected)
+                    {
+                        btn3DsConn.BeginInvoke(new MethodInvoker(() =>
+                        {
+                            btn3DsConn.Text = "Disconnect";
+                        }));
+                    }
+                    while (sockConn.Connected)
+                    {
+                        try {
+                            int bytesRecvd = sockConn.Receive(incBuff);
+                            string jsonValues = Encoding.UTF8.GetString(incBuff.Take(bytesRecvd).ToArray());
+                            // Remove last semi-colon.
+                            jsonValues = jsonValues.Remove(jsonValues.Length - 1);
+                            incBuff = new byte[65535];
+                        } catch
+                        {
+                            btn3DsConn.BeginInvoke(new MethodInvoker(() =>
+                            {
+                                btn3DsConn.Text = "Connect!";
+                            }));
+                        }
+                        
+                    }
+
+
+                }).Start();
             }
             else
             {
-                ipStr = txt3dsIp.Text.Substring(0, colonIndex);
-                port = txt3dsIp.Text.Substring(colonIndex + 1);
+                sockConn.Close();
             }
-            new Thread(() =>
-           {
-               Thread.CurrentThread.IsBackground = true;
-               Socket sockConn = new Socket(AddressFamily.InterNetwork,
-                SocketType.Stream,
-                ProtocolType.Tcp);
-               sockConn.Connect(ipStr, Int32.Parse(port));
-               byte[] incBuff = new byte[65536];
-               //Loop and constantly receive messages.
-               if (sockConn.Connected)
-               {
-
-               }
-               while (sockConn.Connected)
-               {
-                   sockConn.Receive(incBuff);
-
-               }
-
-
-           }).Start();
-            //TODO: Create new connection thread.
-            Socket s = new Socket(AddressFamily.InterNetwork,
-                SocketType.Stream,
-                ProtocolType.Tcp);
-            byte[] buf = new byte[65536];
-            String tmp;
-            s.Connect("192.168.1.219", 65534);
-            s.Receive(buf);
-            // Keep receiving on different thread, append to global JSON array.
-            // Other thread then reads from top of array, then keeps processing
-            // and updating graphics?
-            tmp = Encoding.UTF8.GetString(buf);
+            
         }
     }
     public class inputs
