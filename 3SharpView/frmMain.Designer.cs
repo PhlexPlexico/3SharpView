@@ -38,8 +38,10 @@
             this.txt3dsIp = new System.Windows.Forms.TextBox();
             this.btn3DsConn = new System.Windows.Forms.Button();
             this.pb3DS = new System.Windows.Forms.PictureBox();
+            this.pbA = new System.Windows.Forms.PictureBox();
             this.mnuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb3DS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbA)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIP
@@ -117,16 +119,28 @@
             this.pb3DS.TabIndex = 4;
             this.pb3DS.TabStop = false;
             // 
+            // pbA
+            // 
+            this.pbA.Image = ((System.Drawing.Image)(resources.GetObject("pbA.Image")));
+            this.pbA.Location = new System.Drawing.Point(587, 93);
+            this.pbA.Name = "pbA";
+            this.pbA.Size = new System.Drawing.Size(52, 52);
+            this.pbA.TabIndex = 5;
+            this.pbA.TabStop = false;
+            this.pbA.Visible = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 450);
+            this.Controls.Add(this.pbA);
             this.Controls.Add(this.pb3DS);
             this.Controls.Add(this.btn3DsConn);
             this.Controls.Add(this.txt3dsIp);
             this.Controls.Add(this.lblIP);
             this.Controls.Add(this.mnuTop);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnuTop;
             this.Name = "frmMain";
             this.Text = "3SharpView";
@@ -134,6 +148,7 @@
             this.mnuTop.ResumeLayout(false);
             this.mnuTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb3DS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbA)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,6 +165,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pbA;
     }
 }
 
