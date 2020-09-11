@@ -8,6 +8,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using System.Collections.Concurrent;
 using System.IO;
+using System.Drawing;
 
 namespace _3SharpView
 {
@@ -113,16 +114,27 @@ namespace _3SharpView
                             }
                             catch (JsonReaderException)
                             {
-                                //MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                //objInputQueue.
+
                             }
-                            catch(Exception ex)
+                            catch (JsonSerializationException)
+                            {
+
+                            }
+                            catch (SocketException)
+                            {
+                                btn3DsConn.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    btn3DsConn.Text = "Connect!";
+                                }));
+                            }
+                            catch (Exception ex)
                             {
                                 Cursor.Current = Cursors.Default;
                                 btn3DsConn.BeginInvoke(new MethodInvoker(() =>
                                 {
                                     btn3DsConn.Text = "Connect!";
                                 }));
+                                MessageBox.Show("Uknown exception. Please report as an issue to the repository.\n" + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
 
                         }
@@ -150,7 +162,14 @@ namespace _3SharpView
         */
         private void readFromQueue()
         {
+            // Get the single input and read the buttons pressed.
+            Func<uint, uint, bool[]> ToBits = (uint input, uint numberOfBits) => Enumerable.Range(0, (int)numberOfBits)
+                .Select(bitIndex => 1 << bitIndex)
+                .Select(bitMask => (input & bitMask) == bitMask)
+                .ToArray();
             inputs singleInput;
+            btns toDraw = new btns();
+            bool[] bitArray;
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
@@ -158,33 +177,42 @@ namespace _3SharpView
                 while (true)
                 {
                     // Read and update graphics.
-                    //objInputQueue.Distinct
                     while (objInputQueue.TryDequeue(out singleInput))
                     {
-                        if (singleInput.btn == 1)
+                        bitArray = ToBits(singleInput.btn, 15);
+                        // For each true, grab the index and assign to button. 
+                        // Button will draw dependent on index returned?
+                        // There will have to be a link from location to button as well on the viewer.
+                        for(uint button = 0; button < bitArray.Length; button++)
                         {
-                            pbA.BeginInvoke(new MethodInvoker(() =>
-                            {
-                                pbA.Visible = true;
-                            }));
+                            if(bitArray[button])
+                                toDraw.draw(button);
+                        }
+                        //if (bitArray[0])
+                        //{
+                        //    pbA.BeginInvoke(new MethodInvoker(() =>
+                        //    {
+                        //        pbA.Visible = true;
+                        //    }));
 
-                        }
-                        else
-                        {
-                            pbA.BeginInvoke(new MethodInvoker(() =>
-                            {
-                                pbA.Visible = false;
-                            }));
-                        }
+                        //}
+                        //else
+                        //{
+                        //    pbA.BeginInvoke(new MethodInvoker(() =>
+                        //    {
+                        //        pbA.Visible = false;
+                        //    }));
+                        //}
                     }
                 }
             }).Start();
         }
     }
-    
+   
+
+
     public class inputs
     {
-        //inputs myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
         public uint btn { get; set; }
         public int cp_x { get; set; }
         public int cp_y { get; set; }
@@ -194,4 +222,31 @@ namespace _3SharpView
         public int cpp_x { get; set; }
         public int cpp_y { get; set; }
     }
+    
+    public class btns
+    {
+        public List<int> a = new List<int>() { 0, 543, 139 };
+        public uint b =  1;
+        public uint select =  2;
+        public uint start =  3;
+        public uint d_right =  4;
+        public uint d_left =  5;
+        public uint d_up =  6;
+        public uint d_down =  7;
+        public uint r =  8;
+        public uint l =  9;
+        public uint x =  10;
+        public uint y =  11;
+        public uint zl =  14;
+        public uint zr =  15;
+
+
+        public void draw(uint button)
+        {
+            //543,139 is A.
+            Graphics g = frmMain.ActiveForm.CreateGraphics();
+            g.DrawEllipse(new Pen(Color.Aqua, 2), a[1], a[2], 25, 25);
+        }
+    }
+
 }

@@ -124,7 +124,7 @@
             this.pbA.Image = ((System.Drawing.Image)(resources.GetObject("pbA.Image")));
             this.pbA.Location = new System.Drawing.Point(587, 93);
             this.pbA.Name = "pbA";
-            this.pbA.Size = new System.Drawing.Size(52, 52);
+            this.pbA.Size = new System.Drawing.Size(54, 54);
             this.pbA.TabIndex = 5;
             this.pbA.TabStop = false;
             this.pbA.Visible = false;
@@ -135,11 +135,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 450);
             this.Controls.Add(this.pbA);
-            this.Controls.Add(this.pb3DS);
             this.Controls.Add(this.btn3DsConn);
             this.Controls.Add(this.txt3dsIp);
             this.Controls.Add(this.lblIP);
             this.Controls.Add(this.mnuTop);
+            this.Controls.Add(this.pb3DS);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnuTop;
             this.Name = "frmMain";
