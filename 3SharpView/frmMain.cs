@@ -13,7 +13,7 @@ using System.Drawing;
 namespace _3SharpView
 {
 
-    
+
     public partial class frmMain : Form
     {
         Socket sockConn;
@@ -28,7 +28,7 @@ namespace _3SharpView
         {
             readFromQueue();
         }
-        
+
         private void btn3DsConn_Click(object sender, EventArgs e)
         {
             connectTo3DS();
@@ -72,7 +72,7 @@ namespace _3SharpView
                      SocketType.Stream,
                      ProtocolType.Tcp);
                     ConcurrentQueue<inputs> tmpJsonBuffer = new ConcurrentQueue<inputs>();
-                    try 
+                    try
                     {
                         sockConn.Connect(ipStr, Int32.Parse(port));
                         byte[] incBuff = new byte[65535];
@@ -139,8 +139,8 @@ namespace _3SharpView
                             }
 
                         }
-                    } 
-                    catch (SocketException) 
+                    }
+                    catch (SocketException)
                     {
                         Cursor.Current = Cursors.Default;
                         MessageBox.Show("Could not connect to the 3DS. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -184,7 +184,7 @@ namespace _3SharpView
                         // For each true, grab the index and assign to button. 
                         // Button will draw dependent on index returned?
                         // There will have to be a link from location to button as well on the viewer.
-                        for(uint button = 0; button < bitArray.Length; button++)
+                        for (uint button = 0; button < bitArray.Length; button++)
                         {
                             if (bitArray[button])
                             {
@@ -194,11 +194,32 @@ namespace _3SharpView
                                     pbA.BeginInvoke(new MethodInvoker(() =>
                                     {
                                         pbA.Visible = true;
-                                        
                                     }));
                                 }
-                                
-                            } 
+                                else if (button == allButtons.b)
+                                {
+                                    pbB.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbB.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.x)
+                                {
+                                    pbX.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbX.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.y)
+                                {
+                                    pbY.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbY.Visible = true;
+                                    }));
+                                }
+
+
+                            }
                             else
                             {
                                 if (button == allButtons.a)
@@ -206,6 +227,27 @@ namespace _3SharpView
                                     pbA.BeginInvoke(new MethodInvoker(() =>
                                     {
                                         pbA.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.b)
+                                {
+                                    pbB.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbB.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.x)
+                                {
+                                    pbX.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbX.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.y)
+                                {
+                                    pbY.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbY.Visible = false;
                                     }));
                                 }
                             }
@@ -230,7 +272,7 @@ namespace _3SharpView
             }).Start();
         }
     }
-   
+
 
 
     public class inputs
@@ -244,25 +286,25 @@ namespace _3SharpView
         public int cpp_x { get; set; }
         public int cpp_y { get; set; }
     }
-    
+
     public class btns
     {
         public uint a = 0;
-        public uint b =  1;
-        public uint select =  2;
-        public uint start =  3;
-        public uint d_right =  4;
-        public uint d_left =  5;
-        public uint d_up =  6;
-        public uint d_down =  7;
-        public uint r =  8;
-        public uint l =  9;
-        public uint x =  10;
-        public uint y =  11;
-        public uint zl =  14;
-        public uint zr =  15;     
+        public uint b = 1;
+        public uint select = 2;
+        public uint start = 3;
+        public uint d_right = 4;
+        public uint d_left = 5;
+        public uint d_up = 6;
+        public uint d_down = 7;
+        public uint r = 8;
+        public uint l = 9;
+        public uint x = 10;
+        public uint y = 11;
+        public uint zl = 14;
+        public uint zr = 15;
 
-        
+
     }
 
 }

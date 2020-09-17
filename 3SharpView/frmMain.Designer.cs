@@ -39,9 +39,15 @@
             this.btn3DsConn = new System.Windows.Forms.Button();
             this.pb3DS = new System.Windows.Forms.PictureBox();
             this.pbA = new System.Windows.Forms.PictureBox();
+            this.pbB = new System.Windows.Forms.PictureBox();
+            this.pbX = new System.Windows.Forms.PictureBox();
+            this.pbY = new System.Windows.Forms.PictureBox();
             this.mnuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb3DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbY)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIP
@@ -133,12 +139,54 @@
             this.pbA.TabStop = false;
             this.pbA.Visible = false;
             // 
+            // pbB
+            // 
+            this.pbB.BackColor = System.Drawing.Color.Transparent;
+            this.pbB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbB.Image = ((System.Drawing.Image)(resources.GetObject("pbB.Image")));
+            this.pbB.Location = new System.Drawing.Point(504, 167);
+            this.pbB.Name = "pbB";
+            this.pbB.Size = new System.Drawing.Size(32, 32);
+            this.pbB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbB.TabIndex = 5;
+            this.pbB.TabStop = false;
+            this.pbB.Visible = false;
+            // 
+            // pbX
+            // 
+            this.pbX.BackColor = System.Drawing.Color.Transparent;
+            this.pbX.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbX.Image = ((System.Drawing.Image)(resources.GetObject("pbX.Image")));
+            this.pbX.Location = new System.Drawing.Point(504, 108);
+            this.pbX.Name = "pbX";
+            this.pbX.Size = new System.Drawing.Size(32, 32);
+            this.pbX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbX.TabIndex = 5;
+            this.pbX.TabStop = false;
+            this.pbX.Visible = false;
+            // 
+            // pbY
+            // 
+            this.pbY.BackColor = System.Drawing.Color.Transparent;
+            this.pbY.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbY.Image = ((System.Drawing.Image)(resources.GetObject("pbY.Image")));
+            this.pbY.Location = new System.Drawing.Point(473, 137);
+            this.pbY.Name = "pbY";
+            this.pbY.Size = new System.Drawing.Size(32, 32);
+            this.pbY.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbY.TabIndex = 5;
+            this.pbY.TabStop = false;
+            this.pbY.Visible = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(755, 450);
+            this.Controls.Add(this.pbY);
+            this.Controls.Add(this.pbX);
+            this.Controls.Add(this.pbB);
             this.Controls.Add(this.pbA);
             this.Controls.Add(this.btn3DsConn);
             this.Controls.Add(this.txt3dsIp);
@@ -154,6 +202,9 @@
             this.mnuTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb3DS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbY)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,6 +222,9 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.PictureBox pbA;
+        private System.Windows.Forms.PictureBox pbB;
+        private System.Windows.Forms.PictureBox pbX;
+        private System.Windows.Forms.PictureBox pbY;
     }
 }
 
