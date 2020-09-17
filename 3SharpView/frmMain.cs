@@ -21,13 +21,14 @@ namespace _3SharpView
         public frmMain()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
             readFromQueue();
         }
-
+        
         private void btn3DsConn_Click(object sender, EventArgs e)
         {
             connectTo3DS();
@@ -168,7 +169,7 @@ namespace _3SharpView
                 .Select(bitMask => (input & bitMask) == bitMask)
                 .ToArray();
             inputs singleInput;
-            btns toDraw = new btns();
+            btns allButtons = new btns();
             bool[] bitArray;
             new Thread(() =>
             {
@@ -185,8 +186,29 @@ namespace _3SharpView
                         // There will have to be a link from location to button as well on the viewer.
                         for(uint button = 0; button < bitArray.Length; button++)
                         {
-                            if(bitArray[button])
-                                toDraw.draw(button);
+                            if (bitArray[button])
+                            {
+                                //paintOnPictureBox(btnPosition[0], btnPosition[1]);
+                                if (button == allButtons.a)
+                                {
+                                    pbA.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbA.Visible = true;
+                                        
+                                    }));
+                                }
+                                
+                            } 
+                            else
+                            {
+                                if (button == allButtons.a)
+                                {
+                                    pbA.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbA.Visible = false;
+                                    }));
+                                }
+                            }
                         }
                         //if (bitArray[0])
                         //{
@@ -225,7 +247,7 @@ namespace _3SharpView
     
     public class btns
     {
-        public List<int> a = new List<int>() { 0, 543, 139 };
+        public uint a = 0;
         public uint b =  1;
         public uint select =  2;
         public uint start =  3;
@@ -238,15 +260,9 @@ namespace _3SharpView
         public uint x =  10;
         public uint y =  11;
         public uint zl =  14;
-        public uint zr =  15;
+        public uint zr =  15;     
 
-
-        public void draw(uint button)
-        {
-            //543,139 is A.
-            Graphics g = frmMain.ActiveForm.CreateGraphics();
-            g.DrawEllipse(new Pen(Color.Aqua, 2), a[1], a[2], 25, 25);
-        }
+        
     }
 
 }

@@ -112,6 +112,7 @@
             // 
             // pb3DS
             // 
+            this.pb3DS.BackColor = System.Drawing.Color.Transparent;
             this.pb3DS.Image = ((System.Drawing.Image)(resources.GetObject("pb3DS.Image")));
             this.pb3DS.Location = new System.Drawing.Point(0, 27);
             this.pb3DS.Name = "pb3DS";
@@ -121,10 +122,13 @@
             // 
             // pbA
             // 
+            this.pbA.BackColor = System.Drawing.Color.Transparent;
+            this.pbA.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pbA.Image = ((System.Drawing.Image)(resources.GetObject("pbA.Image")));
-            this.pbA.Location = new System.Drawing.Point(587, 93);
+            this.pbA.Location = new System.Drawing.Point(536, 137);
             this.pbA.Name = "pbA";
-            this.pbA.Size = new System.Drawing.Size(54, 54);
+            this.pbA.Size = new System.Drawing.Size(32, 32);
+            this.pbA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbA.TabIndex = 5;
             this.pbA.TabStop = false;
             this.pbA.Visible = false;
@@ -133,6 +137,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(755, 450);
             this.Controls.Add(this.pbA);
             this.Controls.Add(this.btn3DsConn);
