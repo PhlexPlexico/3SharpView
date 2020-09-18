@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Collections.Concurrent;
 using System.IO;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace _3SharpView
 {
@@ -168,105 +169,97 @@ namespace _3SharpView
                 .Select(bitIndex => 1 << bitIndex)
                 .Select(bitMask => (input & bitMask) == bitMask)
                 .ToArray();
-            inputs singleInput;
             btns allButtons = new btns();
             bool[] bitArray;
             new Thread(() =>
             {
-                Thread.CurrentThread.IsBackground = true;
-                Thread.CurrentThread.Name = "QueueRead";
-                while (true)
+            Thread.CurrentThread.IsBackground = true;
+            Thread.CurrentThread.Name = "QueueRead";
+            while (true)
+            {
+                // Read and update graphics.
+                while (objInputQueue.TryDequeue(out inputs singleInput))
                 {
-                    // Read and update graphics.
-                    while (objInputQueue.TryDequeue(out singleInput))
+                    bitArray = ToBits(singleInput.btn, 15);
+                    // For each true, grab the index and assign to button. 
+                    // Button will draw dependent on index returned?
+                    // There will have to be a link from location to button as well on the viewer.
+                    for (uint button = 0; button < bitArray.Length; button++)
                     {
-                        bitArray = ToBits(singleInput.btn, 15);
-                        // For each true, grab the index and assign to button. 
-                        // Button will draw dependent on index returned?
-                        // There will have to be a link from location to button as well on the viewer.
-                        for (uint button = 0; button < bitArray.Length; button++)
+                        if (bitArray[button])
                         {
-                            if (bitArray[button])
+                            //paintOnPictureBox(btnPosition[0], btnPosition[1]);
+                            if (button == allButtons.a)
                             {
-                                //paintOnPictureBox(btnPosition[0], btnPosition[1]);
-                                if (button == allButtons.a)
+                                pbA.BeginInvoke(new MethodInvoker(() =>
                                 {
-                                    pbA.BeginInvoke(new MethodInvoker(() =>
-                                    {
-                                        pbA.Visible = true;
-                                    }));
-                                }
-                                else if (button == allButtons.b)
-                                {
-                                    pbB.BeginInvoke(new MethodInvoker(() =>
-                                    {
-                                        pbB.Visible = true;
-                                    }));
-                                }
-                                else if (button == allButtons.x)
-                                {
-                                    pbX.BeginInvoke(new MethodInvoker(() =>
-                                    {
-                                        pbX.Visible = true;
-                                    }));
-                                }
-                                else if (button == allButtons.y)
-                                {
-                                    pbY.BeginInvoke(new MethodInvoker(() =>
-                                    {
-                                        pbY.Visible = true;
-                                    }));
-                                }
+                                    pbA.Visible = true;
 
-
+                                }));
                             }
-                            else
+                            else if (button == allButtons.b)
                             {
-                                if (button == allButtons.a)
+                                pbB.BeginInvoke(new MethodInvoker(() =>
                                 {
-                                    pbA.BeginInvoke(new MethodInvoker(() =>
-                                    {
-                                        pbA.Visible = false;
-                                    }));
-                                }
-                                else if (button == allButtons.b)
+                                    pbB.Visible = true;
+                                }));
+                            }
+                            else if (button == allButtons.x)
+                            {
+                                pbX.BeginInvoke(new MethodInvoker(() =>
                                 {
-                                    pbB.BeginInvoke(new MethodInvoker(() =>
-                                    {
-                                        pbB.Visible = false;
-                                    }));
-                                }
-                                else if (button == allButtons.x)
+                                    pbX.Visible = true;
+                                }));
+                            }
+                            else if (button == allButtons.y)
+                            {
+                                pbY.BeginInvoke(new MethodInvoker(() =>
                                 {
-                                    pbX.BeginInvoke(new MethodInvoker(() =>
-                                    {
-                                        pbX.Visible = false;
-                                    }));
-                                }
-                                else if (button == allButtons.y)
-                                {
-                                    pbY.BeginInvoke(new MethodInvoker(() =>
-                                    {
-                                        pbY.Visible = false;
-                                    }));
-                                }
+                                    pbY.Visible = true;
+                                }));
                             }
                         }
-                        //if (bitArray[0])
-                        //{
-                        //    pbA.BeginInvoke(new MethodInvoker(() =>
-                        //    {
-                        //        pbA.Visible = true;
-                        //    }));
-
-                        //}
-                        //else
-                        //{
-                        //    pbA.BeginInvoke(new MethodInvoker(() =>
-                        //    {
-                        //        pbA.Visible = false;
-                        //    }));
-                        //}
+                        else
+                        {
+                            if (button == allButtons.a)
+                            {
+                                pbA.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbA.Visible = false;
+                                }));
+                            }
+                            else if (button == allButtons.b)
+                            {
+                                pbB.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbB.Visible = false;
+                                }));
+                            }
+                            else if (button == allButtons.x)
+                            {
+                                pbX.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbX.Visible = false;
+                                }));
+                            }
+                            else if (button == allButtons.y)
+                            {
+                                pbY.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbY.Visible = false;
+                                }));
+                            }
+                        }
+                            //TODO: Update circlepad. Move picture box in relation to x/y coord brought in by JSON.
+                            //if(Math.Abs(singleInput.cp_x) > 10 || Math.Abs(singleInput.cp_y) > 10) {
+                                opbCirclePad.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    opbCirclePad.Location = new Point((int)((singleInput.cp_x) * opbCirclePad.scale + opbCirclePad.defaultX), opbCirclePad.defaultY - (int)((singleInput.cp_y) * opbCirclePad.scale));
+                                    opbCirclePad.Refresh();
+                                }));
+                            //}
+                            
+                        }
                     }
                 }
             }).Start();
@@ -303,8 +296,27 @@ namespace _3SharpView
         public uint y = 11;
         public uint zl = 14;
         public uint zr = 15;
+    }
 
 
+class OvalPictureBox : PictureBox
+    {
+        public int defaultX = 33;
+        public int defaultY = 96;
+        public double scale = 1 / 5.0;
+        public OvalPictureBox()
+        {
+            this.BackColor = Color.DarkGray;
+        }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            using (var gp = new GraphicsPath())
+            {
+                gp.AddEllipse(new Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                this.Region = new Region(gp);
+            }
+        }
     }
 
 }

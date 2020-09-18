@@ -42,12 +42,14 @@
             this.pbB = new System.Windows.Forms.PictureBox();
             this.pbX = new System.Windows.Forms.PictureBox();
             this.pbY = new System.Windows.Forms.PictureBox();
+            this.opbCirclePad = new _3SharpView.OvalPictureBox();
             this.mnuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb3DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.opbCirclePad)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIP
@@ -178,12 +180,25 @@
             this.pbY.TabStop = false;
             this.pbY.Visible = false;
             // 
+            // opbCirclePad
+            // 
+            this.opbCirclePad.BackColor = System.Drawing.Color.DarkGray;
+            this.opbCirclePad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.opbCirclePad.Image = ((System.Drawing.Image)(resources.GetObject("opbCirclePad.Image")));
+            this.opbCirclePad.Location = new System.Drawing.Point(33, 96);
+            this.opbCirclePad.Name = "opbCirclePad";
+            this.opbCirclePad.Size = new System.Drawing.Size(52, 52);
+            this.opbCirclePad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.opbCirclePad.TabIndex = 6;
+            this.opbCirclePad.TabStop = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(755, 450);
+            this.Controls.Add(this.opbCirclePad);
             this.Controls.Add(this.pbY);
             this.Controls.Add(this.pbX);
             this.Controls.Add(this.pbB);
@@ -205,6 +220,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.opbCirclePad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,6 +241,7 @@
         private System.Windows.Forms.PictureBox pbB;
         private System.Windows.Forms.PictureBox pbX;
         private System.Windows.Forms.PictureBox pbY;
+        private OvalPictureBox opbCirclePad;
     }
 }
 
