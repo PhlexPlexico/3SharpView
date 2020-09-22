@@ -44,6 +44,16 @@ namespace _3SharpView
             }
         }
 
+        private void tsmnuExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void tsmnuAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Input viewer for the 3DS, to be used with 3input.\nMade by PhlexPlexico.\nSpecial Thanks to N3rdsWithGame, Megahirtz, Gaby.\nAny issues? Please report on the GitHub repo.", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         /**
          * Uses the IP:Port in the text file to connect to the socket.
          */
@@ -116,11 +126,13 @@ namespace _3SharpView
                             }
                             catch (JsonReaderException)
                             {
-
+                                // Reset state.
+                                incBuff = new byte[65535];
                             }
                             catch (JsonSerializationException)
                             {
-
+                                // Reset state.
+                                incBuff = new byte[65535];
                             }
                             catch (SocketException)
                             {
@@ -194,7 +206,6 @@ namespace _3SharpView
                                 pbA.BeginInvoke(new MethodInvoker(() =>
                                 {
                                     pbA.Visible = true;
-
                                 }));
                             }
                             else if (button == allButtons.b)
@@ -218,7 +229,63 @@ namespace _3SharpView
                                     pbY.Visible = true;
                                 }));
                             }
-                        }
+                            else if (button == allButtons.l)
+                            {
+                                pbL.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbL.Visible = true;
+                                }));
+                            }
+                            else if (button == allButtons.r)
+                            {
+                                pbR.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbR.Visible = true;
+                                }));
+                            }
+                            else if (button == allButtons.d_up)
+                            {
+                                pbDUp.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbDUp.Visible = true;
+                                }));
+                            }
+                            else if (button == allButtons.d_down)
+                            {
+                                pbDDown.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbDDown.Visible = true;
+                                }));
+                            }
+                            else if (button == allButtons.d_left)
+                            {
+                                pbDLeft.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbDLeft.Visible = true;
+                                }));
+                            }
+                            else if (button == allButtons.d_right)
+                            {
+                                pbDRight.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbDRight.Visible = true;
+                                }));
+                            }
+                            else if (button == allButtons.start)
+                            {
+                                    pbStart.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbStart.Visible = true;
+                                }));
+                            }
+                            else if (button == allButtons.select)
+                            {
+                                pbSelect.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbSelect.Visible = true;
+                                }));
+                            }
+                            }
                         else
                         {
                             if (button == allButtons.a)
@@ -249,16 +316,71 @@ namespace _3SharpView
                                     pbY.Visible = false;
                                 }));
                             }
-                        }
-                            //TODO: Update circlepad. Move picture box in relation to x/y coord brought in by JSON.
-                            //if(Math.Abs(singleInput.cp_x) > 10 || Math.Abs(singleInput.cp_y) > 10) {
-                                opbCirclePad.BeginInvoke(new MethodInvoker(() =>
+                            else if(button == allButtons.l)
+                            {
+                                pbL.BeginInvoke(new MethodInvoker(() =>
                                 {
-                                    opbCirclePad.Location = new Point((int)((singleInput.cp_x) * opbCirclePad.scale + opbCirclePad.defaultX), opbCirclePad.defaultY - (int)((singleInput.cp_y) * opbCirclePad.scale));
-                                    opbCirclePad.Refresh();
+                                    pbL.Visible = false;
                                 }));
-                            //}
-                            
+                            }
+                            else if (button == allButtons.r)
+                            {
+                                pbR.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbR.Visible = false;
+                                }));
+                            }
+                            else if (button == allButtons.d_up)
+                            {
+                                pbDUp.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbDUp.Visible = false;
+                                }));
+                            }
+                            else if (button == allButtons.d_down)
+                            {
+                                pbDDown.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbDDown.Visible = false;
+                                }));
+                            }
+                            else if (button == allButtons.d_left)
+                            {
+                                pbDLeft.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbDLeft.Visible = false;
+                                }));
+                            }
+                            else if (button == allButtons.d_right)
+                            {
+                                pbDRight.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbDRight.Visible = false;
+                                }));
+                            }
+                            else if (button == allButtons.start)
+                            {
+                                pbStart.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbStart.Visible = false;
+                                }));
+                            }
+                            else if (button == allButtons.select)
+                            {
+                                pbSelect.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbSelect.Visible = false;
+                                }));
+                            }
+                            }
+                        opbCirclePad.BeginInvoke(new MethodInvoker(() =>
+                        {
+                            opbCirclePad.Location = new Point((int)((singleInput.cp_x) * opbCirclePad.scale + opbCirclePad.defaultX), opbCirclePad.defaultY - (int)((singleInput.cp_y) * opbCirclePad.scale));
+                            opbCirclePad.Refresh();
+                            lblCpX.Text = "Circle Pad X: " + singleInput.cp_x;
+                            lblCpY.Text = "Circle Pad Y: " + singleInput.cp_y;
+
+                        }));                         
                         }
                     }
                 }
