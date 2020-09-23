@@ -9,6 +9,7 @@ Current feature-set:
 - Thumb Stick
 - L/R
 - Start/Select
+- Touch Screen
 
 ## Contributors/Credit
 - [Gaby](https://twitter.com/gabyelnuevo) for helping test the first iterations of this.
@@ -22,7 +23,6 @@ Current feature-set:
 ![3DS Viewer](3SharpView/assets/screenshot.png)
 
 ## TODO
-- Touch Screen Inputs
 - ZL/ZR
 - Possible change of theme via drop-down?
 
