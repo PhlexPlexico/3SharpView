@@ -241,7 +241,7 @@
             // 
             // pnlTouchScreen
             // 
-            this.pnlTouchScreen.BackColor = System.Drawing.Color.Transparent;
+            this.pnlTouchScreen.BackColor = System.Drawing.Color.Lime;
             this.pnlTouchScreen.Controls.Add(this.opbTouchDot);
             this.pnlTouchScreen.Location = new System.Drawing.Point(133, 74);
             this.pnlTouchScreen.Name = "pnlTouchScreen";
