@@ -46,6 +46,7 @@
             this.pbL = new System.Windows.Forms.PictureBox();
             this.pbR = new System.Windows.Forms.PictureBox();
             this.pnlTouchScreen = new System.Windows.Forms.Panel();
+            this.opbTouchDot = new _3SharpView.OvalPictureBox();
             this.pbDUp = new System.Windows.Forms.PictureBox();
             this.pbDRight = new System.Windows.Forms.PictureBox();
             this.pbDDown = new System.Windows.Forms.PictureBox();
@@ -54,6 +55,8 @@
             this.pbSelect = new _3SharpView.OvalPictureBox();
             this.lblCpX = new System.Windows.Forms.Label();
             this.lblCpY = new System.Windows.Forms.Label();
+            this.lblTpX = new System.Windows.Forms.Label();
+            this.lblTpY = new System.Windows.Forms.Label();
             this.mnuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb3DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.opbCirclePad)).BeginInit();
@@ -63,6 +66,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbR)).BeginInit();
+            this.pnlTouchScreen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.opbTouchDot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDDown)).BeginInit();
@@ -237,11 +242,21 @@
             // pnlTouchScreen
             // 
             this.pnlTouchScreen.BackColor = System.Drawing.Color.Transparent;
-            this.pnlTouchScreen.Location = new System.Drawing.Point(131, 73);
+            this.pnlTouchScreen.Controls.Add(this.opbTouchDot);
+            this.pnlTouchScreen.Location = new System.Drawing.Point(133, 74);
             this.pnlTouchScreen.Name = "pnlTouchScreen";
-            this.pnlTouchScreen.Size = new System.Drawing.Size(319, 242);
+            this.pnlTouchScreen.Size = new System.Drawing.Size(315, 240);
             this.pnlTouchScreen.TabIndex = 9;
-            this.pnlTouchScreen.Visible = false;
+            // 
+            // opbTouchDot
+            // 
+            this.opbTouchDot.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.opbTouchDot.Location = new System.Drawing.Point(0, 0);
+            this.opbTouchDot.Name = "opbTouchDot";
+            this.opbTouchDot.Size = new System.Drawing.Size(24, 24);
+            this.opbTouchDot.TabIndex = 0;
+            this.opbTouchDot.TabStop = false;
+            this.opbTouchDot.Visible = false;
             // 
             // pbDUp
             // 
@@ -338,12 +353,33 @@
             this.lblCpY.TabIndex = 12;
             this.lblCpY.Text = "Circle Pad Y: ";
             // 
+            // lblTpX
+            // 
+            this.lblTpX.AutoSize = true;
+            this.lblTpX.Location = new System.Drawing.Point(587, 137);
+            this.lblTpX.Name = "lblTpX";
+            this.lblTpX.Size = new System.Drawing.Size(75, 15);
+            this.lblTpX.TabIndex = 13;
+            this.lblTpX.Text = "Touchpad X: ";
+            // 
+            // lblTpY
+            // 
+            this.lblTpY.AutoSize = true;
+            this.lblTpY.Location = new System.Drawing.Point(588, 155);
+            this.lblTpY.Name = "lblTpY";
+            this.lblTpY.Size = new System.Drawing.Size(75, 15);
+            this.lblTpY.TabIndex = 13;
+            this.lblTpY.Text = "Touchpad Y: ";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(776, 361);
+            this.Controls.Add(this.pnlTouchScreen);
+            this.Controls.Add(this.lblTpY);
+            this.Controls.Add(this.lblTpX);
             this.Controls.Add(this.lblCpY);
             this.Controls.Add(this.lblCpX);
             this.Controls.Add(this.pbSelect);
@@ -352,7 +388,6 @@
             this.Controls.Add(this.pbDDown);
             this.Controls.Add(this.pbDRight);
             this.Controls.Add(this.pbDUp);
-            this.Controls.Add(this.pnlTouchScreen);
             this.Controls.Add(this.pbR);
             this.Controls.Add(this.pbL);
             this.Controls.Add(this.pbX);
@@ -381,6 +416,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbR)).EndInit();
+            this.pnlTouchScreen.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.opbTouchDot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDDown)).EndInit();
@@ -419,6 +456,9 @@
         private OvalPictureBox pbSelect;
         private System.Windows.Forms.Label lblCpX;
         private System.Windows.Forms.Label lblCpY;
+        private System.Windows.Forms.Label lblTpX;
+        private System.Windows.Forms.Label lblTpY;
+        private OvalPictureBox opbTouchDot;
     }
 }
 

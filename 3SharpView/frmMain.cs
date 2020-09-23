@@ -113,7 +113,6 @@ namespace _3SharpView
                                 {
                                     inputs inputCheck;
                                     if (objInputQueue.TryPeek(out inputCheck) || objInputQueue.Count < 1)
-                                    //if ((objInputQueue.Last() == null || objInputQueue.Last() != input))
                                     {
                                         // If the queue is empty add, or if the new input does not equal the same, add to queue.
                                         if (inputCheck == null || (inputCheck.btn != input.btn))
@@ -139,6 +138,10 @@ namespace _3SharpView
                                 btn3DsConn.BeginInvoke(new MethodInvoker(() =>
                                 {
                                     btn3DsConn.Text = "Connect!";
+                                    lblTpX.Text = "Touchpad X: ";
+                                    lblTpY.Text = "Touchpad Y: ";
+                                    lblCpX.Text = "Circle Pad X: ";
+                                    lblCpY.Text = "Circle Pad Y: ";
                                 }));
                             }
                             catch (Exception ex)
@@ -147,8 +150,12 @@ namespace _3SharpView
                                 btn3DsConn.BeginInvoke(new MethodInvoker(() =>
                                 {
                                     btn3DsConn.Text = "Connect!";
+                                    lblTpX.Text = "Touchpad X: ";
+                                    lblTpY.Text = "Touchpad Y: ";
+                                    lblCpX.Text = "Circle Pad X: ";
+                                    lblCpY.Text = "Circle Pad Y: ";
                                 }));
-                                MessageBox.Show("Uknown exception. Please report as an issue to the repository.\n" + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("Unknown exception. Please report as an issue to the repository.\n" + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
 
                         }
@@ -160,6 +167,10 @@ namespace _3SharpView
                         btn3DsConn.BeginInvoke(new MethodInvoker(() =>
                         {
                             btn3DsConn.Text = "Connect!";
+                            lblTpX.Text = "Touchpad X: ";
+                            lblTpY.Text = "Touchpad Y: ";
+                            lblCpX.Text = "Circle Pad X: ";
+                            lblCpY.Text = "Circle Pad Y: ";
                         }));
                     }
                 }).Start();
@@ -373,14 +384,29 @@ namespace _3SharpView
                                 }));
                             }
                             }
-                        opbCirclePad.BeginInvoke(new MethodInvoker(() =>
-                        {
-                            opbCirclePad.Location = new Point((int)((singleInput.cp_x) * opbCirclePad.scale + opbCirclePad.defaultX), opbCirclePad.defaultY - (int)((singleInput.cp_y) * opbCirclePad.scale));
-                            opbCirclePad.Refresh();
-                            lblCpX.Text = "Circle Pad X: " + singleInput.cp_x;
-                            lblCpY.Text = "Circle Pad Y: " + singleInput.cp_y;
-
-                        }));                         
+                            opbCirclePad.BeginInvoke(new MethodInvoker(() =>
+                            {
+                                opbCirclePad.Location = new Point((int)((singleInput.cp_x) * opbCirclePad.scale + opbCirclePad.defaultX), opbCirclePad.defaultY - (int)((singleInput.cp_y) * opbCirclePad.scale));
+                                opbCirclePad.Refresh();
+                                lblCpX.Text = "Circle Pad X: " + singleInput.cp_x;
+                                lblCpY.Text = "Circle Pad Y: " + singleInput.cp_y;
+                                lblTpX.Text = "Touchpad X: " + singleInput.tp_x;
+                                lblTpY.Text = "Touchpad Y: " + singleInput.tp_y;
+                                if(singleInput.tp_x == 0 && singleInput.tp_y == 0)
+                                {
+                                    opbTouchDot.Visible = false;
+                                }
+                                else
+                                {
+                                    opbTouchDot.Visible = true;
+                                    // TODO: Offset controls for points on touch screen.
+                                    // TODO: Allow changing of pointer colour via drop down.
+                                    // TODO: Allow change of touch screen to different chroma filter?
+                                    opbTouchDot.Location = new Point((int)(singleInput.tp_x - 5), (int)(singleInput.tp_y - 5));
+                                }
+                                opbTouchDot.Refresh();
+                            }));
+                            
                         }
                     }
                 }
