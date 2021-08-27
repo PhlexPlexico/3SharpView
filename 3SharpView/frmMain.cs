@@ -203,6 +203,46 @@ namespace _3SharpView
                 // Read and update graphics.
                 while (objInputQueue.TryDequeue(out inputs singleInput))
                 {
+                    bitArray = ToBits(singleInput.ir_btn, 16);
+                    for (uint button = 0; button < bitArray.Length; button++)
+                    {
+                        if (bitArray[button])
+                        {
+                            if (button == allButtons.zl)
+                            {
+                                pbzl.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbzl.Visible = true;
+                                }));
+                            }
+                            else if (button == allButtons.zr)
+                            {
+                                pbzr.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbzr.Visible = true;
+                                }));
+                            }
+                        }
+                        else
+                        {
+                            if (button == allButtons.zl)
+                            {
+                                pbzl.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbzl.Visible = false;
+                                }));
+                            }
+                            else if (button == allButtons.zr)
+                            {
+                                pbzr.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    pbzr.Visible = false;
+                                }));
+                            }
+                        }
+                    }
+                    
+                 
                     bitArray = ToBits(singleInput.btn, 15);
                     // For each true, grab the index and assign to button. 
                     // Button will draw dependent on index returned?
@@ -423,7 +463,7 @@ namespace _3SharpView
         public int cp_y { get; set; }
         public int tp_x { get; set; }
         public int tp_y { get; set; }
-        public int ir_btn { get; set; }
+        public uint ir_btn { get; set; }
         public int cpp_x { get; set; }
         public int cpp_y { get; set; }
     }
@@ -445,6 +485,7 @@ namespace _3SharpView
         public uint zl = 14;
         public uint zr = 15;
     }
+
 
 
 class OvalPictureBox : PictureBox

@@ -57,6 +57,8 @@
             this.lblCpY = new System.Windows.Forms.Label();
             this.lblTpX = new System.Windows.Forms.Label();
             this.lblTpY = new System.Windows.Forms.Label();
+            this.pbzl = new System.Windows.Forms.PictureBox();
+            this.pbzr = new System.Windows.Forms.PictureBox();
             this.mnuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb3DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.opbCirclePad)).BeginInit();
@@ -74,6 +76,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbDLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbzl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbzr)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIP
@@ -371,12 +375,38 @@
             this.lblTpY.TabIndex = 13;
             this.lblTpY.Text = "Touchpad Y: ";
             // 
+            // pbzl
+            // 
+            this.pbzl.BackColor = System.Drawing.Color.Transparent;
+            this.pbzl.Image = ((System.Drawing.Image)(resources.GetObject("pbzl.Image")));
+            this.pbzl.Location = new System.Drawing.Point(56, 29);
+            this.pbzl.Name = "pbzl";
+            this.pbzl.Size = new System.Drawing.Size(37, 27);
+            this.pbzl.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbzl.TabIndex = 8;
+            this.pbzl.TabStop = false;
+            this.pbzl.Visible = false;
+            // 
+            // pbzr
+            // 
+            this.pbzr.BackColor = System.Drawing.Color.Transparent;
+            this.pbzr.Image = ((System.Drawing.Image)(resources.GetObject("pbzr.Image")));
+            this.pbzr.Location = new System.Drawing.Point(496, 29);
+            this.pbzr.Name = "pbzr";
+            this.pbzr.Size = new System.Drawing.Size(31, 27);
+            this.pbzr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbzr.TabIndex = 8;
+            this.pbzr.TabStop = false;
+            this.pbzr.Visible = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(776, 361);
+            this.Controls.Add(this.pbzr);
+            this.Controls.Add(this.pbzl);
             this.Controls.Add(this.pnlTouchScreen);
             this.Controls.Add(this.lblTpY);
             this.Controls.Add(this.lblTpX);
@@ -424,6 +454,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbDLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbzl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbzr)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -459,6 +491,8 @@
         private System.Windows.Forms.Label lblTpX;
         private System.Windows.Forms.Label lblTpY;
         private OvalPictureBox opbTouchDot;
+        private System.Windows.Forms.PictureBox pbzl;
+        private System.Windows.Forms.PictureBox pbzr;
     }
 }
 
