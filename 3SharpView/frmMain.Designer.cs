@@ -381,7 +381,7 @@
             this.pbzl.Image = ((System.Drawing.Image)(resources.GetObject("pbzl.Image")));
             this.pbzl.Location = new System.Drawing.Point(56, 29);
             this.pbzl.Name = "pbzl";
-            this.pbzl.Size = new System.Drawing.Size(37, 27);
+            this.pbzl.Size = new System.Drawing.Size(25, 27);
             this.pbzl.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbzl.TabIndex = 8;
             this.pbzl.TabStop = false;
@@ -391,9 +391,9 @@
             // 
             this.pbzr.BackColor = System.Drawing.Color.Transparent;
             this.pbzr.Image = ((System.Drawing.Image)(resources.GetObject("pbzr.Image")));
-            this.pbzr.Location = new System.Drawing.Point(496, 29);
+            this.pbzr.Location = new System.Drawing.Point(505, 29);
             this.pbzr.Name = "pbzr";
-            this.pbzr.Size = new System.Drawing.Size(31, 27);
+            this.pbzr.Size = new System.Drawing.Size(25, 27);
             this.pbzr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbzr.TabIndex = 8;
             this.pbzr.TabStop = false;

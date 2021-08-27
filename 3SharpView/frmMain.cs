@@ -196,233 +196,221 @@ namespace _3SharpView
             bool[] bitArray;
             new Thread(() =>
             {
-            Thread.CurrentThread.IsBackground = true;
-            Thread.CurrentThread.Name = "QueueRead";
-            while (true)
-            {
-                // Read and update graphics.
-                while (objInputQueue.TryDequeue(out inputs singleInput))
+                Thread.CurrentThread.IsBackground = true;
+                Thread.CurrentThread.Name = "QueueRead";
+                while (true)
                 {
-                    bitArray = ToBits(singleInput.ir_btn, 16);
-                    for (uint button = 0; button < bitArray.Length; button++)
+                    // Read and update graphics.
+                    while (objInputQueue.TryDequeue(out inputs singleInput))
                     {
-                        if (bitArray[button])
+                        bitArray = ToBits(singleInput.btn + singleInput.ir_btn, 16);
+                        // For each true, grab the index and assign to button. 
+                        // Button will draw dependent on index returned?
+                        // There will have to be a link from location to button as well on the viewer.
+                        for (uint button = 0; button < bitArray.Length; button++)
                         {
-                            if (button == allButtons.zl)
+                            if (bitArray[button])
                             {
-                                pbzl.BeginInvoke(new MethodInvoker(() =>
+                                //paintOnPictureBox(btnPosition[0], btnPosition[1]);
+                                if (button == allButtons.a)
                                 {
-                                    pbzl.Visible = true;
-                                }));
-                            }
-                            else if (button == allButtons.zr)
-                            {
-                                pbzr.BeginInvoke(new MethodInvoker(() =>
+                                    pbA.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbA.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.b)
                                 {
-                                    pbzr.Visible = true;
-                                }));
-                            }
-                        }
-                        else
-                        {
-                            if (button == allButtons.zl)
-                            {
-                                pbzl.BeginInvoke(new MethodInvoker(() =>
+                                    pbB.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbB.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.x)
                                 {
-                                    pbzl.Visible = false;
-                                }));
-                            }
-                            else if (button == allButtons.zr)
-                            {
-                                pbzr.BeginInvoke(new MethodInvoker(() =>
+                                    pbX.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbX.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.y)
                                 {
-                                    pbzr.Visible = false;
-                                }));
-                            }
-                        }
-                    }
-                    
-                 
-                    bitArray = ToBits(singleInput.btn, 15);
-                    // For each true, grab the index and assign to button. 
-                    // Button will draw dependent on index returned?
-                    // There will have to be a link from location to button as well on the viewer.
-                    for (uint button = 0; button < bitArray.Length; button++)
-                    {
-                        if (bitArray[button])
-                        {
-                            //paintOnPictureBox(btnPosition[0], btnPosition[1]);
-                            if (button == allButtons.a)
-                            {
-                                pbA.BeginInvoke(new MethodInvoker(() =>
+                                    pbY.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbY.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.l)
                                 {
-                                    pbA.Visible = true;
-                                }));
-                            }
-                            else if (button == allButtons.b)
-                            {
-                                pbB.BeginInvoke(new MethodInvoker(() =>
+                                    pbL.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbL.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.r)
                                 {
-                                    pbB.Visible = true;
-                                }));
-                            }
-                            else if (button == allButtons.x)
-                            {
-                                pbX.BeginInvoke(new MethodInvoker(() =>
+                                    pbR.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbR.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.zl)
                                 {
-                                    pbX.Visible = true;
-                                }));
-                            }
-                            else if (button == allButtons.y)
-                            {
-                                pbY.BeginInvoke(new MethodInvoker(() =>
+                                    pbzl.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbzl.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.zr)
                                 {
-                                    pbY.Visible = true;
-                                }));
-                            }
-                            else if (button == allButtons.l)
-                            {
-                                pbL.BeginInvoke(new MethodInvoker(() =>
+                                    pbzr.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbzr.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.d_up)
                                 {
-                                    pbL.Visible = true;
-                                }));
-                            }
-                            else if (button == allButtons.r)
-                            {
-                                pbR.BeginInvoke(new MethodInvoker(() =>
+                                    pbDUp.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbDUp.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.d_down)
                                 {
-                                    pbR.Visible = true;
-                                }));
-                            }
-                            else if (button == allButtons.d_up)
-                            {
-                                pbDUp.BeginInvoke(new MethodInvoker(() =>
+                                    pbDDown.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbDDown.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.d_left)
                                 {
-                                    pbDUp.Visible = true;
-                                }));
-                            }
-                            else if (button == allButtons.d_down)
-                            {
-                                pbDDown.BeginInvoke(new MethodInvoker(() =>
+                                    pbDLeft.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbDLeft.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.d_right)
                                 {
-                                    pbDDown.Visible = true;
-                                }));
-                            }
-                            else if (button == allButtons.d_left)
-                            {
-                                pbDLeft.BeginInvoke(new MethodInvoker(() =>
+                                    pbDRight.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbDRight.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.start)
                                 {
-                                    pbDLeft.Visible = true;
-                                }));
-                            }
-                            else if (button == allButtons.d_right)
-                            {
-                                pbDRight.BeginInvoke(new MethodInvoker(() =>
-                                {
-                                    pbDRight.Visible = true;
-                                }));
-                            }
-                            else if (button == allButtons.start)
-                            {
                                     pbStart.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbStart.Visible = true;
+                                    }));
+                                }
+                                else if (button == allButtons.select)
                                 {
-                                    pbStart.Visible = true;
-                                }));
+                                    pbSelect.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbSelect.Visible = true;
+                                    }));
+                                }
                             }
-                            else if (button == allButtons.select)
+                            else
                             {
-                                pbSelect.BeginInvoke(new MethodInvoker(() =>
+                                if (button == allButtons.a)
                                 {
-                                    pbSelect.Visible = true;
-                                }));
-                            }
-                            }
-                        else
-                        {
-                            if (button == allButtons.a)
-                            {
-                                pbA.BeginInvoke(new MethodInvoker(() =>
+                                    pbA.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbA.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.b)
                                 {
-                                    pbA.Visible = false;
-                                }));
-                            }
-                            else if (button == allButtons.b)
-                            {
-                                pbB.BeginInvoke(new MethodInvoker(() =>
+                                    pbB.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbB.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.x)
                                 {
-                                    pbB.Visible = false;
-                                }));
-                            }
-                            else if (button == allButtons.x)
-                            {
-                                pbX.BeginInvoke(new MethodInvoker(() =>
+                                    pbX.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbX.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.y)
                                 {
-                                    pbX.Visible = false;
-                                }));
-                            }
-                            else if (button == allButtons.y)
-                            {
-                                pbY.BeginInvoke(new MethodInvoker(() =>
+                                    pbY.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbY.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.l)
                                 {
-                                    pbY.Visible = false;
-                                }));
-                            }
-                            else if(button == allButtons.l)
-                            {
-                                pbL.BeginInvoke(new MethodInvoker(() =>
+                                    pbL.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbL.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.r)
                                 {
-                                    pbL.Visible = false;
-                                }));
-                            }
-                            else if (button == allButtons.r)
-                            {
-                                pbR.BeginInvoke(new MethodInvoker(() =>
+                                    pbR.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbR.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.zl)
                                 {
-                                    pbR.Visible = false;
-                                }));
-                            }
-                            else if (button == allButtons.d_up)
-                            {
-                                pbDUp.BeginInvoke(new MethodInvoker(() =>
+                                    pbzl.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbzl.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.zr)
                                 {
-                                    pbDUp.Visible = false;
-                                }));
-                            }
-                            else if (button == allButtons.d_down)
-                            {
-                                pbDDown.BeginInvoke(new MethodInvoker(() =>
+                                    pbzr.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbzr.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.d_up)
                                 {
-                                    pbDDown.Visible = false;
-                                }));
-                            }
-                            else if (button == allButtons.d_left)
-                            {
-                                pbDLeft.BeginInvoke(new MethodInvoker(() =>
+                                    pbDUp.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbDUp.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.d_down)
                                 {
-                                    pbDLeft.Visible = false;
-                                }));
-                            }
-                            else if (button == allButtons.d_right)
-                            {
-                                pbDRight.BeginInvoke(new MethodInvoker(() =>
+                                    pbDDown.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbDDown.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.d_left)
                                 {
-                                    pbDRight.Visible = false;
-                                }));
-                            }
-                            else if (button == allButtons.start)
-                            {
-                                pbStart.BeginInvoke(new MethodInvoker(() =>
+                                    pbDLeft.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbDLeft.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.d_right)
                                 {
-                                    pbStart.Visible = false;
-                                }));
-                            }
-                            else if (button == allButtons.select)
-                            {
-                                pbSelect.BeginInvoke(new MethodInvoker(() =>
+                                    pbDRight.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbDRight.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.start)
                                 {
-                                    pbSelect.Visible = false;
-                                }));
-                            }
+                                    pbStart.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbStart.Visible = false;
+                                    }));
+                                }
+                                else if (button == allButtons.select)
+                                {
+                                    pbSelect.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        pbSelect.Visible = false;
+                                    }));
+                                }
                             }
                             opbCirclePad.BeginInvoke(new MethodInvoker(() =>
                             {
@@ -432,7 +420,7 @@ namespace _3SharpView
                                 lblCpY.Text = "Circle Pad Y: " + singleInput.cp_y;
                                 lblTpX.Text = "Touchpad X: " + singleInput.tp_x;
                                 lblTpY.Text = "Touchpad Y: " + singleInput.tp_y;
-                                if(singleInput.tp_x == 0 && singleInput.tp_y == 0)
+                                if (singleInput.tp_x == 0 && singleInput.tp_y == 0)
                                 {
                                     opbTouchDot.Visible = false;
                                 }
@@ -446,7 +434,7 @@ namespace _3SharpView
                                 }
                                 opbTouchDot.Refresh();
                             }));
-                            
+
                         }
                     }
                 }
@@ -488,7 +476,7 @@ namespace _3SharpView
 
 
 
-class OvalPictureBox : PictureBox
+    class OvalPictureBox : PictureBox
     {
         public int defaultX = 33;
         public int defaultY = 96;
