@@ -59,6 +59,13 @@
             this.lblTpY = new System.Windows.Forms.Label();
             this.pbzl = new System.Windows.Forms.PictureBox();
             this.pbzr = new System.Windows.Forms.PictureBox();
+            this.cbChromaScreen = new System.Windows.Forms.ComboBox();
+            this.lblChroma = new System.Windows.Forms.Label();
+            this.cbChromaTouch = new System.Windows.Forms.ComboBox();
+            this.lblChromaTouch = new System.Windows.Forms.Label();
+            this.lbl3DsChoice = new System.Windows.Forms.Label();
+            this.cbSkinChoice = new System.Windows.Forms.ComboBox();
+            this.pbog3ds = new System.Windows.Forms.PictureBox();
             this.mnuTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb3DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.opbCirclePad)).BeginInit();
@@ -78,6 +85,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbzl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbzr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbog3ds)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIP
@@ -96,7 +104,7 @@
             this.helpToolStripMenuItem});
             this.mnuTop.Location = new System.Drawing.Point(0, 0);
             this.mnuTop.Name = "mnuTop";
-            this.mnuTop.Size = new System.Drawing.Size(776, 24);
+            this.mnuTop.Size = new System.Drawing.Size(834, 24);
             this.mnuTop.TabIndex = 1;
             this.mnuTop.Text = "mnuTop";
             // 
@@ -398,6 +406,87 @@
             this.pbzr.TabIndex = 8;
             this.pbzr.TabStop = false;
             this.pbzr.Visible = false;
+            // cbChromaScreen
+            // 
+            this.cbChromaScreen.DisplayMember = "Green";
+            this.cbChromaScreen.FormattingEnabled = true;
+            this.cbChromaScreen.Items.AddRange(new object[] {
+            "Lime",
+            "Blue",
+            "Pink"});
+            this.cbChromaScreen.Location = new System.Drawing.Point(711, 216);
+            this.cbChromaScreen.Name = "cbChromaScreen";
+            this.cbChromaScreen.Size = new System.Drawing.Size(111, 23);
+            this.cbChromaScreen.TabIndex = 14;
+            this.cbChromaScreen.SelectionChangeCommitted += new System.EventHandler(this.cbChromaScreen_SelectionChangeCommitted);
+            this.cbChromaScreen.Leave += new System.EventHandler(this.cbChromaScreen_Leave);
+            // 
+            // lblChroma
+            // 
+            this.lblChroma.AutoSize = true;
+            this.lblChroma.Location = new System.Drawing.Point(588, 219);
+            this.lblChroma.Name = "lblChroma";
+            this.lblChroma.Size = new System.Drawing.Size(117, 15);
+            this.lblChroma.TabIndex = 15;
+            this.lblChroma.Text = "Chromakey (Screen):";
+            // 
+            // cbChromaTouch
+            // 
+            this.cbChromaTouch.DisplayMember = "Green";
+            this.cbChromaTouch.FormattingEnabled = true;
+            this.cbChromaTouch.Items.AddRange(new object[] {
+            "Blue",
+            "Lime",
+            "Pink"});
+            this.cbChromaTouch.Location = new System.Drawing.Point(711, 245);
+            this.cbChromaTouch.Name = "cbChromaTouch";
+            this.cbChromaTouch.Size = new System.Drawing.Size(111, 23);
+            this.cbChromaTouch.TabIndex = 14;
+            this.cbChromaTouch.SelectionChangeCommitted += new System.EventHandler(this.cbChromaTouch_SelectionChangeCommitted);
+            this.cbChromaTouch.Leave += new System.EventHandler(this.cbChromaTouch_Leave);
+            // 
+            // lblChromaTouch
+            // 
+            this.lblChromaTouch.AutoSize = true;
+            this.lblChromaTouch.Location = new System.Drawing.Point(588, 248);
+            this.lblChromaTouch.Name = "lblChromaTouch";
+            this.lblChromaTouch.Size = new System.Drawing.Size(114, 15);
+            this.lblChromaTouch.TabIndex = 15;
+            this.lblChromaTouch.Text = "Chromakey (Touch):";
+            // 
+            // lbl3DsChoice
+            // 
+            this.lbl3DsChoice.AutoSize = true;
+            this.lbl3DsChoice.Location = new System.Drawing.Point(587, 332);
+            this.lbl3DsChoice.Name = "lbl3DsChoice";
+            this.lbl3DsChoice.Size = new System.Drawing.Size(30, 15);
+            this.lbl3DsChoice.TabIndex = 16;
+            this.lbl3DsChoice.Text = "3DS:";
+            this.lbl3DsChoice.Visible = false;
+            // 
+            // cbSkinChoice
+            // 
+            this.cbSkinChoice.FormattingEnabled = true;
+            this.cbSkinChoice.Items.AddRange(new object[] {
+            "SNES",
+            "Old 3DS Black"});
+            this.cbSkinChoice.Location = new System.Drawing.Point(623, 329);
+            this.cbSkinChoice.Name = "cbSkinChoice";
+            this.cbSkinChoice.Size = new System.Drawing.Size(121, 23);
+            this.cbSkinChoice.TabIndex = 17;
+            this.cbSkinChoice.Visible = false;
+            this.cbSkinChoice.SelectedIndexChanged += new System.EventHandler(this.cbSkinChoice_SelectedIndexChanged);
+            // 
+            // pbog3ds
+            // 
+            this.pbog3ds.BackColor = System.Drawing.Color.Transparent;
+            this.pbog3ds.Image = ((System.Drawing.Image)(resources.GetObject("pbog3ds.Image")));
+            this.pbog3ds.Location = new System.Drawing.Point(0, 27);
+            this.pbog3ds.Name = "pbog3ds";
+            this.pbog3ds.Size = new System.Drawing.Size(581, 329);
+            this.pbog3ds.TabIndex = 4;
+            this.pbog3ds.TabStop = false;
+            this.pbog3ds.Visible = false;
             // 
             // frmMain
             // 
@@ -407,6 +496,13 @@
             this.ClientSize = new System.Drawing.Size(776, 361);
             this.Controls.Add(this.pbzr);
             this.Controls.Add(this.pbzl);
+            this.ClientSize = new System.Drawing.Size(834, 361);
+            this.Controls.Add(this.cbSkinChoice);
+            this.Controls.Add(this.lbl3DsChoice);
+            this.Controls.Add(this.lblChromaTouch);
+            this.Controls.Add(this.cbChromaTouch);
+            this.Controls.Add(this.lblChroma);
+            this.Controls.Add(this.cbChromaScreen);
             this.Controls.Add(this.pnlTouchScreen);
             this.Controls.Add(this.lblTpY);
             this.Controls.Add(this.lblTpX);
@@ -430,6 +526,8 @@
             this.Controls.Add(this.lblIP);
             this.Controls.Add(this.mnuTop);
             this.Controls.Add(this.pb3DS);
+            this.Controls.Add(this.pbog3ds);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnuTop;
             this.MaximizeBox = false;
@@ -456,6 +554,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbzl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbzr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbog3ds)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -493,6 +592,13 @@
         private OvalPictureBox opbTouchDot;
         private System.Windows.Forms.PictureBox pbzl;
         private System.Windows.Forms.PictureBox pbzr;
+        private System.Windows.Forms.ComboBox cbChromaScreen;
+        private System.Windows.Forms.Label lblChroma;
+        private System.Windows.Forms.ComboBox cbChromaTouch;
+        private System.Windows.Forms.Label lblChromaTouch;
+        private System.Windows.Forms.Label lbl3DsChoice;
+        private System.Windows.Forms.ComboBox cbSkinChoice;
+        private System.Windows.Forms.PictureBox pbog3ds;
     }
 }
 

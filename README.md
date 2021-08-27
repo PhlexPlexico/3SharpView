@@ -10,6 +10,8 @@ Current feature-set:
 - L/R
 - Start/Select
 - Touch Screen
+- Adjustable Chromakey for touch screen and touch point (either in plain text, or hex code!).
+
 
 ## Contributors/Credit
 - [Gaby](https://twitter.com/gabyelnuevo) for helping test the first iterations of this.

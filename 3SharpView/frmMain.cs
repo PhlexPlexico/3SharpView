@@ -27,6 +27,9 @@ namespace _3SharpView
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            cbChromaScreen.SelectedIndex = 0;
+            cbChromaTouch.SelectedIndex = 0;
+            cbSkinChoice.SelectedIndex = 0;
             readFromQueue();
         }
 
@@ -52,6 +55,38 @@ namespace _3SharpView
         private void tsmnuAbout_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Input viewer for the 3DS, to be used with 3input.\nMade by PhlexPlexico.\nSpecial Thanks to N3rdsWithGame, Megahirtz, Gaby.\nAny issues? Please report on the GitHub repo.", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void cbChromaScreen_Leave(object sender, EventArgs e)
+        {
+            swapColour("screen");
+        }
+
+        private void cbChromaScreen_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            swapColour("screen");
+        }
+
+        private void cbChromaTouch_Leave(object sender, EventArgs e)
+        {
+            swapColour("touch");
+        }
+
+        private void cbChromaTouch_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            swapColour("touch");
+        }
+
+        private void cbSkinChoice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbSkinChoice.SelectedItem == null)
+            {
+                return;
+            }
+            else if(cbSkinChoice.SelectedItem.ToString() == "Old 3DS Black") {
+                swapSkin("OGB");
+            }
+            
         }
 
         /**
@@ -180,7 +215,6 @@ namespace _3SharpView
                 sockConn.Close();
             }
         }
-
 
         /**
          Read from the ConcurrentQueue and update the fields accordingly.
@@ -440,6 +474,69 @@ namespace _3SharpView
                 }
             }).Start();
         }
+
+        private void swapColour(string objName)
+        {
+            // Try and change chromakey based on HTML value, then by regular colour.
+            try
+            {
+                Color newColour;
+                String colourString;
+                if (objName == "screen") {
+                    if(cbChromaScreen.SelectedItem == null)
+                    {
+                        colourString = cbChromaScreen.Text;
+                    }
+                    else
+                    {
+                        colourString = cbChromaScreen.SelectedItem.ToString();
+                    }
+                    newColour = ColorTranslator.FromHtml(colourString);
+                    if (newColour == Color.Empty)
+                    {
+                        newColour = Color.FromName(colourString);
+                    }
+                    pnlTouchScreen.BackColor = newColour;
+                    pnlTouchScreen.Refresh();
+                }
+                else if (objName == "touch")
+                {
+                    if (cbChromaTouch.SelectedItem == null)
+                    {
+                        colourString = cbChromaTouch.Text;
+                    }
+                    else
+                    {
+                        colourString = cbChromaTouch.SelectedItem.ToString();
+                    }
+                    newColour = ColorTranslator.FromHtml(colourString);
+                    if (newColour == Color.Empty)
+                    {
+                        newColour = Color.FromName(colourString);
+                    }
+                    opbTouchDot.BackColor = newColour;
+                    opbTouchDot.Refresh();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Please either select a hex code colour, or a known colour name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void swapSkin(string skinChoice)
+        {
+            switch (skinChoice) {
+                case "OGB":
+                    //TODO: Create assets folder and re-align all locations of buttons/circle pad.
+                    break;
+                default:
+                    break;
+            }
+                
+        }
+
+       
     }
 
 
